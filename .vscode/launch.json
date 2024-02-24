@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "./main.go",
-            "args": ["-f=2", "./sample.tsv"]
+            "args": ["./sample.tsv"]
         }
     ]
 }
