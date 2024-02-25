@@ -1,6 +1,7 @@
 package cut
 
 import (
+	"bufio"
 	"bytes"
 	"io"
 	"log"
@@ -9,7 +10,7 @@ import (
 	"strings"
 )
 
-func OpenFile(filename string) []byte {
+func ReadFromFile(filename string) []byte {
 	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
@@ -21,6 +22,20 @@ func OpenFile(filename string) []byte {
 		log.Fatal(err)
 	}
 	return text
+}
+
+func ReadFromStdin() []byte {
+	reader := bufio.NewReader(os.Stdin)
+	var lines []string
+	for {
+		line, err := reader.ReadString('\n')
+		if err != nil {
+			break
+		}
+		lines = append(lines, line)
+	}
+	output := strings.Join(lines, "")
+	return []byte(output)
 }
 
 func GetFields(fields string) (output []int, err error) {

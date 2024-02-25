@@ -14,10 +14,14 @@ func main() {
 	var filename string
 	var text []byte
 
-	if filename = flag.Arg(0); filename != "" {
-		text = cut.OpenFile(filename)
+	if filename = flag.Arg(0); filename == "" || filename == "-" {
+		text = cut.ReadFromStdin()
 	} else {
-		fmt.Println("No file specified.")
+		text = cut.ReadFromFile(filename)
+	}
+
+	if text == nil {
+		fmt.Println("No file/input specified.")
 	}
 
 	fieldList, err := cut.GetFields(*field)

@@ -10,7 +10,8 @@
             "request": "launch",
             "mode": "auto",
             "program": "./main.go",
-            "args": ["./sample.tsv"]
+            "console": "integratedTerminal",
+            "args": ["-d", "," , "-f", "1 2", "./sample.tsv"]
         }
     ]
 }
